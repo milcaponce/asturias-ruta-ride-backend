@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/api/routes")
+@RequestMapping("/api/v1/routes")
 public class RouteController {
 
     private final RouteService routeService;

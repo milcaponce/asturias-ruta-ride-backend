@@ -10,7 +10,6 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "routes")
-
 public class RouteEntity {
     
     @Id
@@ -54,4 +53,18 @@ public class RouteEntity {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+     // ===== equals() y hashCode() =====
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RouteEntity)) return false;
+        RouteEntity that = (RouteEntity) o;
+        return idRoute != null && idRoute.equals(that.idRoute);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
