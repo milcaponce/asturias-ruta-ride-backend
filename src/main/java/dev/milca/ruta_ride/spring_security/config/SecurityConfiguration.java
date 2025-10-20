@@ -41,15 +41,16 @@ public class SecurityConfiguration {
                         .deleteCookies("JSESSIONID"))
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll())
-                .httpBasic(Customizer.withDefaults())
+                //.httpBasic(Customizer.withDefaults()) - Lo comento temporalmente
+                .httpBasic(httpBasic -> httpBasic.disable()) //Reemplaza la línea de arriba
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
         return http.build();
-    }
+        }
 
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
+        @Bean
+        public InMemoryUserDetailsManager userDetailsManager() {
 
         UserDetails mickey = User.builder()
                 .username("mickey")
@@ -68,6 +69,6 @@ public class SecurityConfiguration {
         users.add(minnie);
 
         return new InMemoryUserDetailsManager(users);
-    }
+        }
 
 }
