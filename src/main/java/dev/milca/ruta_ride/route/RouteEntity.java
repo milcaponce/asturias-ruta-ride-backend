@@ -20,6 +20,7 @@ public class RouteEntity {
     private String area;
     private Integer kilometres;
     private String difficulty;
+    private String image;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -27,12 +28,13 @@ public class RouteEntity {
     // ---Constructors ---
     public RouteEntity() {}
 
-    public RouteEntity(String name, String area, Integer kilometres, String difficulty, String description) {
+    public RouteEntity(String name, String area, Integer kilometres, String difficulty, String description, String image) {
         this.name = name;
         this.area = area;
         this.kilometres = kilometres;
         this.difficulty = difficulty;
         this.description = description;
+        this.image = image;
     }
 
     // ---Getter y Setters ---
@@ -53,6 +55,12 @@ public class RouteEntity {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public String getImage() { return image; }
+    public void setImage(String image) {
+        this.image = image; }
+    
+    
 
      // ===== equals() y hashCode() =====
     @Override

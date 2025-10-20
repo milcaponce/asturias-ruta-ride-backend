@@ -41,8 +41,7 @@ public class SecurityConfiguration {
                         .deleteCookies("JSESSIONID"))
                 .authorizeHttpRequests(auth -> auth
                         .anyRequest().permitAll())
-                //.httpBasic(Customizer.withDefaults()) - Lo comento temporalmente
-                .httpBasic(httpBasic -> httpBasic.disable()) //Reemplaza la línea de arriba
+                .httpBasic(Customizer.withDefaults()) 
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED));
 
