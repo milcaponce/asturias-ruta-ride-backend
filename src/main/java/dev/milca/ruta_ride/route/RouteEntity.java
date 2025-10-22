@@ -14,6 +14,7 @@ public class RouteEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_route")
     private Long idRoute;
 
     private String name;
