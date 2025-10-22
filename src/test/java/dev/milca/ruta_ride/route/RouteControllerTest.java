@@ -9,6 +9,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import dev.milca.ruta_ride.route.dtos.RouteDTO;
+
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -44,5 +46,35 @@ class RouteControllerTest {
         mockMvc.perform(get("/api/v1/routes"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name", is("Ruta del Cares")));
+    }
+
+    @Test
+    void testGetRouteByIdReturnsOk() throws Exception {
+        RouteDTO routeDTO = new RouteDTO(
+                1L,
+                "Ruta del Cares",
+                "Picos de Europa",
+                12,
+                "Moderada",
+                "ruta-cares.jpg",
+                "Ruta icónica con vistas espectaculares"
+        );
+
+        when(routeService.getRouteById(1L)).thenReturn(routeDTO);
+
+        mockMvc.perform(get("/api/v1/routes/1"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.name", is("Ruta del Cares")))
+            .andExpect(jsonPath("$.area", is("Picos de Europa")))
+            .andExpect(jsonPath("$.difficulty", is("Moderada")));
+    }
+
+@Test
+void testGetRouteByIdReturnsNotFound() throws Exception {
+    when(routeService.getRouteById(99L))
+            .thenThrow(new dev.milca.ruta_ride.common.exceptions.ResourceNotFoundException("Route not found"));
+
+    mockMvc.perform(get("/api/v1/routes/99"))
+            .andExpect(status().isNotFound());
     }
 }
