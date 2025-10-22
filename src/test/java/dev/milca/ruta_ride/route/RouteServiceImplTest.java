@@ -7,11 +7,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import dev.milca.ruta_ride.common.exceptions.ResourceNotFoundException;
+import dev.milca.ruta_ride.route.dtos.RouteDTO;
+
 import java.util.List;
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @ExtendWith(MockitoExtension.class)
 class RouteServiceImplTest {
@@ -52,5 +57,26 @@ class RouteServiceImplTest {
         assertThat(routes).isNotEmpty();
         assertThat(routes).hasSize(2);
         assertThat(routes.get(0).getName()).isEqualTo("Ruta del Cares");
+    }
+
+    @Test
+    void testGetRouteByIdReturnsDTO() {
+        RouteEntity route = mockRoutes.get(0);
+        when(routeRepository.findById(1L)).thenReturn(Optional.of(route));
+
+        RouteDTO dto = routeService.getRouteById(1L);
+
+        assertThat(dto).isNotNull();
+        assertThat(dto.getIdRoute()).isEqualTo(1L);
+        assertThat(dto.getName()).isEqualTo("Ruta del Cares");
+    }
+
+    @Test
+    void testGetRouteByIdThrowsWhenNotFound() {
+        when(routeRepository.findById(99L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> routeService.getRouteById(99L))
+                .isInstanceOf(ResourceNotFoundException.class)
+                .hasMessageContaining("Route not found");
     }
 }
