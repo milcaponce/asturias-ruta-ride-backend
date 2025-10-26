@@ -26,16 +26,24 @@ public class RouteEntity {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(nullable = true)
+    private Double latitude;
+
+    @Column(nullable = true)
+    private Double longitude;
+
     // ---Constructors ---
     public RouteEntity() {}
 
-    public RouteEntity(String name, String area, Integer kilometres, String difficulty, String description, String image) {
+    public RouteEntity(String name, String area, Integer kilometres, String difficulty, String description, String image, Double latitude, Double longitude) {
         this.name = name;
         this.area = area;
         this.kilometres = kilometres;
         this.difficulty = difficulty;
         this.description = description;
         this.image = image;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     // ---Getter y Setters ---
@@ -61,6 +69,11 @@ public class RouteEntity {
     public void setImage(String image) {
         this.image = image; }
     
+    public Double getLatitude() { return latitude; }
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+
+    public Double getLongitude() { return longitude; }
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
     
 
      // ===== equals() y hashCode() =====

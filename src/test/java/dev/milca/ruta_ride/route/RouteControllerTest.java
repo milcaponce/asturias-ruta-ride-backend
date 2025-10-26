@@ -57,7 +57,8 @@ class RouteControllerTest {
                 12,
                 "Moderada",
                 "ruta-cares.jpg",
-                "Ruta icónica con vistas espectaculares"
+                "Ruta icónica con vistas espectaculares",
+                43.1793, -4.8046
         );
 
         when(routeService.getRouteById(1L)).thenReturn(routeDTO);

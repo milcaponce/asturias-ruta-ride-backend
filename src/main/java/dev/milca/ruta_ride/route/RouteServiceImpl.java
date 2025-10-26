@@ -31,7 +31,9 @@ public class RouteServiceImpl implements RouteService {
                 route.getKilometres(),
                 route.getDifficulty(),
                 route.getImage(),
-                route.getDescription()
+                route.getDescription(),
+                route.getLatitude(),
+                route.getLongitude()
         );
     }
 }

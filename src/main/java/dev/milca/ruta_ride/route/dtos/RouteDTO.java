@@ -8,10 +8,12 @@ public class RouteDTO {
     private String difficulty;
     private String image;
     private String description;
+    private Double latitude;
+    private Double longitude;
 
     public RouteDTO() {}
 
-    public RouteDTO(Long idRoute, String name, String area, Integer kilometres, String difficulty, String image, String description) {
+    public RouteDTO(Long idRoute, String name, String area, Integer kilometres, String difficulty, String image, String description, Double latitude, Double longitude) {
         this.idRoute = idRoute;
         this.name = name;
         this.area = area;
@@ -19,6 +21,8 @@ public class RouteDTO {
         this.difficulty = difficulty;
         this.image = image;
         this.description = description;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     //Get y Set
@@ -42,5 +46,11 @@ public class RouteDTO {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
+
+    public Double getLatitude() { return latitude; }
+    public void setLatitude(Double latitude) { this.latitude = latitude; }
+
+    public Double getLongitude() { return longitude; }
+    public void setLongitude(Double longitude) { this.longitude = longitude; }
 
 }
