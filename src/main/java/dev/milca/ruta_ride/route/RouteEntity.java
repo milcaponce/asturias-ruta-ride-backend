@@ -76,7 +76,7 @@ public class RouteEntity {
     public void setLongitude(Double longitude) { this.longitude = longitude; }
     
 
-     // ===== equals() y hashCode() =====
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

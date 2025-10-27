@@ -31,6 +31,7 @@ public class UserEntity {
 
     private String phone;
 
+    @Builder.Default
     @Column(nullable = false)
     private boolean isVerified = false;
 
