@@ -3,8 +3,11 @@ package dev.milca.ruta_ride.auth;
 import dev.milca.ruta_ride.user.*;
 import dev.milca.ruta_ride.user.dto.UserRegisterDTO;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,7 +24,7 @@ public class AuthService {
     //Registra nuevo usuario + envía correo de verif
     public UserEntity register(UserRegisterDTO dto) {
         if (userRepository.existsByEmail(dto.getEmail())) {
-            throw new RuntimeException("El correo ya está registrado");
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "El correo ya está registrado");
 }
 
     UserEntity user = UserEntity.builder()
