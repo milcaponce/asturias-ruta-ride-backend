@@ -2,6 +2,7 @@ package dev.milca.ruta_ride.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,12 @@ public class EmailService {
         message.setSubject(subject);
         message.setText(body);
 
-        mailSender.send(message);
+        try {
+            mailSender.send(message);
+            System.out.println("Correo de verificación enviado correctamente a: " + to);
+        } catch (MailException e) {
+            System.err.println("Error al enviar correo a " + to + ": " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }
