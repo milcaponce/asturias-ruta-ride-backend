@@ -6,6 +6,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import dev.milca.ruta_ride.auth.dto.LoginRequest;
+import dev.milca.ruta_ride.auth.dto.LoginResponse;
+
+
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
@@ -18,4 +22,10 @@ public class AuthController {
         UserEntity newUser = authService.register(dto);
         return ResponseEntity.ok(newUser);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+        return ResponseEntity.ok(authService.login(request));
+    }
+    
 }
