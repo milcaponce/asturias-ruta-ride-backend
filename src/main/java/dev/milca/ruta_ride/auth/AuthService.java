@@ -9,6 +9,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import dev.milca.ruta_ride.auth.dto.LoginRequest;
+import dev.milca.ruta_ride.auth.dto.LoginResponse;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -19,6 +22,7 @@ public class AuthService {
     private final UserRepository userRepository;
     private final VerificationTokenRepository tokenRepository;
     private final EmailService emailService;
+    private final JwtService jwtService;
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     //Registra nuevo usuario + envía correo de verif
@@ -68,5 +72,23 @@ public class AuthService {
         tokenRepository.delete(verificationToken);
 
         return "Cuenta verificada correctamente";
+    }
+
+    //Autenticación del login
+    public LoginResponse login(LoginRequest request) {
+        var user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
+        }
+
+        if (!user.isVerified()) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Account not verified");
+        }
+
+        String token = jwtService.generateToken(user.getEmail());
+
+        return new LoginResponse(token);
     }
 }
