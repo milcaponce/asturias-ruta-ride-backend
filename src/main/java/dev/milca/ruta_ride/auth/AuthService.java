@@ -5,7 +5,7 @@ import dev.milca.ruta_ride.user.dto.UserRegisterDTO;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,7 +23,8 @@ public class AuthService {
     private final VerificationTokenRepository tokenRepository;
     private final EmailService emailService;
     private final JwtService jwtService;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
+    
 
     //Registra nuevo usuario + envía correo de verif
     public UserEntity register(UserRegisterDTO dto) {
