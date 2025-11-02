@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.milca.ruta_ride.route.dtos.RouteDTO;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
