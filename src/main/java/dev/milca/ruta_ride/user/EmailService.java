@@ -18,7 +18,7 @@ public class EmailService {
 
     public void sendVerificationEmail(String to, String token) {
         String subject = "Verifica tu cuenta en RutaRide ";
-        String verificationUrl = "http://localhost:8080/api/v1/auth/verify?token=" + token;
+        String verificationUrl = "http://localhost:5173/verify?token=" + token;
 
         String body = "¡Bienvenido a RutaRide!\n\n"
                 + "Para activar tu cuenta, haz clic en el siguiente enlace:\n"
