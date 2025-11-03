@@ -72,11 +72,14 @@ public class AuthService {
 
     //Verifica el token recibido por correo
     public String verifyToken(String token) {
+
+        System.out.println("🧪 Token recibido desde frontend: [" + token + "]");
+        
         VerificationToken verificationToken = tokenRepository.findByToken(token)
-                .orElseThrow(() -> new RuntimeException("Token no válido"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token no válido"));
 
         if (verificationToken.isExpired()) {
-            throw new RuntimeException("Token expirado");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token expirado");
         }
 
         UserEntity user = verificationToken.getUser();
