@@ -65,7 +65,7 @@ public class AuthService {
         tokenRepository.save(verificationToken);
 
         // Enviar correo
-        emailService.sendVerificationEmail(user.getEmail(), token);
+        emailService.sendVerificationEmail(user.getEmail(), token, user.getName());
 
         return user;
     }
