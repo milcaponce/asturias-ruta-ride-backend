@@ -27,6 +27,7 @@ Este servicio expone una API REST utilizada por el frontend para el registro, in
 
 El backend sigue una estructura modular basada en capas:
 
+```
 src/main/java/dev.milca.ruta_ride
 │
 ├── auth/ # Registro, login, verificación y JWT
@@ -34,7 +35,7 @@ src/main/java/dev.milca.ruta_ride
 ├── user/ # Usuario, token de verificación y servicio email
 ├── spring_security/ # Configuración de seguridad y CORS
 └── common/ # Excepciones y utilidades comunes
-
+```
 ---
 
 ## 3. Modelo de datos
