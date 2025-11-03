@@ -156,7 +156,7 @@ JWT_SECRET=<your_jwt_secret>
 ---
 
 ## 10. Estado del proyecto
-###Funcionalidades completadas para esta fase:
+### Funcionalidades completadas para esta fase:
 
 ✔ Registro de usuario con verificación por email
 
