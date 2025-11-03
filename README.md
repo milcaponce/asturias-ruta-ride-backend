@@ -98,17 +98,19 @@ src/main/java/dev.milca.ruta_ride
 
 ```bash
 docker compose up -d
+```
 
 2. Iniciar base de datos:
 
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=mysql
+```
 
 Opción B: Ejecutar con H2 (sin base de datos instalada)
 
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=h2
-
+```
 
 Consola H2:
 http://localhost:8080/h2-console
@@ -125,7 +127,7 @@ Ejemplo:
 SPRING_MAIL_USERNAME=<your_smtp_user>
 SPRING_MAIL_PASSWORD=<your_smtp_password>
 JWT_SECRET=<your_jwt_secret>
-
+```
 ---
 
 ## 8. Scripts útiles
