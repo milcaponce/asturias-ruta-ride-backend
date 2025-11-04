@@ -1,14 +1,22 @@
-{
-  "properties": [
-    {
-      "name": "spring.profile.active",
-      "type": "java.lang.String",
-      "description": "A description for 'spring.profile.active'"
-    },
-    {
-      "name": "api-endpoint",
-      "type": "java.lang.String",
-      "description": "A description for 'api-endpoint'"
-    }
-  ]
-}
+{"properties": [
+  {
+    "name": "spring.profile.active",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.profile.active'"
+  },
+  {
+    "name": "api-endpoint",
+    "type": "java.lang.String",
+    "description": "A description for 'api-endpoint'"
+  },
+  {
+    "name": "jwt.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.secret'"
+  },
+  {
+    "name": "jwt.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.expiration'"
+  }
+]}
