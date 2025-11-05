@@ -1,6 +1,9 @@
 package dev.milca.ruta_ride.route;
 
+import dev.milca.ruta_ride.common.exceptions.ResourceNotFoundException;
+import dev.milca.ruta_ride.route.dtos.RouteDTO;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -8,8 +11,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import dev.milca.ruta_ride.route.dtos.RouteDTO;
 
 import java.util.List;
 
@@ -35,21 +36,24 @@ class RouteControllerTest {
     }
 
     @Test
-    void testGetAllRoutesEndpointReturnsOk() throws Exception {
-        RouteEntity route = new RouteEntity();
-        route.setIdRoute(1L);
-        route.setName("Ruta del Cares");
-        route.setDifficulty("Media");
+    @DisplayName("GET /api/v1/routes should return 200 and list of routes")
+    void testGetAllRoutes_ReturnsOk() throws Exception {
+        RouteEntity sampleRoute = new RouteEntity();
+        sampleRoute.setIdRoute(1L);
+        sampleRoute.setName("Ruta del Cares");
+        sampleRoute.setDifficulty("Media");
 
-        when(routeService.getAllRoutes()).thenReturn(List.of(route));
+        when(routeService.getAllRoutes()).thenReturn(List.of(sampleRoute));
 
         mockMvc.perform(get("/api/v1/routes"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name", is("Ruta del Cares")));
+                .andExpect(jsonPath("$[0].name", is("Ruta del Cares")))
+                .andExpect(jsonPath("$[0].difficulty", is("Media")));
     }
 
-    @Test
-    void testGetRouteByIdReturnsOk() throws Exception {
+     @Test
+    @DisplayName("GET /api/v1/routes/{id} should return 200 and the route when exists")
+    void testGetRouteById_ReturnsOk() throws Exception {
         RouteDTO routeDTO = new RouteDTO(
                 1L,
                 "Ruta del Cares",
@@ -58,24 +62,26 @@ class RouteControllerTest {
                 "Moderada",
                 "ruta-cares.jpg",
                 "Ruta icónica con vistas espectaculares",
-                43.1793, -4.8046
+                43.1793,
+                -4.8046
         );
 
         when(routeService.getRouteById(1L)).thenReturn(routeDTO);
 
         mockMvc.perform(get("/api/v1/routes/1"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name", is("Ruta del Cares")))
-            .andExpect(jsonPath("$.area", is("Picos de Europa")))
-            .andExpect(jsonPath("$.difficulty", is("Moderada")));
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("Ruta del Cares")))
+                .andExpect(jsonPath("$.area", is("Picos de Europa")))
+                .andExpect(jsonPath("$.difficulty", is("Moderada")));
     }
 
-@Test
-void testGetRouteByIdReturnsNotFound() throws Exception {
-    when(routeService.getRouteById(99L))
-            .thenThrow(new dev.milca.ruta_ride.common.exceptions.ResourceNotFoundException("Route not found"));
+    @Test
+    @DisplayName("GET /api/v1/routes/{id} should return 404 when route does not exist")
+    void testGetRouteById_ReturnsNotFound() throws Exception {
+        when(routeService.getRouteById(99L))
+                .thenThrow(new ResourceNotFoundException("Route not found"));
 
-    mockMvc.perform(get("/api/v1/routes/99"))
-            .andExpect(status().isNotFound());
+        mockMvc.perform(get("/api/v1/routes/99"))
+                .andExpect(status().isNotFound());
     }
 }
