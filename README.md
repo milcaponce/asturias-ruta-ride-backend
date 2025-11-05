@@ -1,7 +1,7 @@
 
 # Asturias Ruta & Ride – Backend
 
-Backend desarrollado con Spring Boot para la aplicación **Asturias Ruta & Ride**, cuyo objetivo es gestionar rutas de senderismo y ciclismo en Asturias e implementar un sistema de autenticación con verificación por correo y seguridad mediante JWT.
+Backend desarrollado con Spring Boot para la aplicación **Asturias Ruta & Ride**, cuyo objetivo es gestionar rutas de senderismo en Asturias e implementar un sistema de autenticación con verificación por correo y seguridad mediante JWT.
 
 Este servicio expone una API REST utilizada por el frontend para el registro, inicio de sesión y consulta de rutas.
 
