@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -45,14 +44,14 @@ public class EmailService {
             helper.setText(html, true); // true = HTML
 
             mailSender.send(message);
-            System.out.println("✅ Correo HTML enviado correctamente a: " + to);
+            //System.out.println("✅ Correo HTML enviado correctamente a: " + to);
 
         } catch (MessagingException | MailException e) {
-            System.err.println("❌ Error enviando correo HTML a " + to + ": " + e.getMessage());
-            e.printStackTrace();
+            //System.err.println("❌ Error enviando correo HTML a " + to + ": " + e.getMessage());
+            //e.printStackTrace();
         } catch (Exception e) {
-            System.err.println("❌ Error cargando plantilla HTML: " + e.getMessage());
-            e.printStackTrace();
+            //System.err.println("❌ Error cargando plantilla HTML: " + e.getMessage());
+            //e.printStackTrace();
         }
     }
 }

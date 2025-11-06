@@ -73,7 +73,7 @@ public class AuthService {
     //Verifica el token recibido por correo
     public String verifyToken(String token) {
 
-        System.out.println("🧪 Token recibido desde frontend: [" + token + "]");
+        //System.out.println("🧪 Token recibido desde frontend: [" + token + "]");
         
         VerificationToken verificationToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Token no válido"));
