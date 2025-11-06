@@ -224,10 +224,12 @@ A continuación se muestran capturas representativas del MVP funcionando:
 
 | Pantalla | Vista |
 |----------|--------|
-| Home | _imagen_ |
-| Listado de Rutas | _imagen_ |
-| Detalle de Ruta | _imagen_ |
-| Login/Register | _imagen_ |
+| Home | <img src=docs/demo/arr-home-page.png alt="Home" width="600" /> |
+| Listado de Rutas | <img src=docs/demo/arr-routes-page.png alt="Listado de Rutas" width="600" /> |
+| Detalle de Ruta | <img src=docs/demo/arr-route-detail-page.png alt="Detalle de Ruta" width="600" /> |
+| Register | <img src=docs/demo/arr-register-page.png alt="Register" width="600" /> |
+| Login | <img src=docs/demo/arr-login-page.png alt="Login" width="600" />
+
 ---
 
 ## 🚀 Estado del Proyecto
